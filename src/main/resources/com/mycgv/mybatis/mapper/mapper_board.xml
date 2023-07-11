@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.springboot.mycgv.repository.BoardMapper">
+
+			<select id="content" parameterType="java.lang.String" resultType="com.springboot.mycgv.dto.BoardDto">
+					SELECT BID, BTITLE, BCONTENT, BHITS, ID, BDATE, BFILE, BSFILE FROM MYCGV_BOARD
+					WHERE BID = #{bid}
+			</select>
+
+	<select id="list" parameterType="com.springboot.mycgv.dto.PageDto" resultType="com.springboot.mycgv.dto.BoardDto">
+		SELECT RNO,BID,BTITLE,BCONTENT,BHITS,ID,BDATE
+		FROM (SELECT ROWNUM RNO, BID, BTITLE, BCONTENT, BHITS, ID, to_char(BDATE,'yyyy-mm-dd') bdate
+			  FROM (SELECT BID, BTITLE,BCONTENT,BHITS, ID, BDATE FROM MYCGV_BOARD
+					ORDER BY BDATE DESC))
+		WHERE RNO BETWEEN #{startCount} AND #{endCount}
+	</select>
+
+<!--		<select id="list2" resultType="com.mycgv_jsp.vo.BoardVo">-->
+<!--			SELECT ROWNUM RNO, BID, BTITLE, BCONTENT, BHITS, ID, to_char(BDATE,'yyyy-mm-dd') bdate-->
+<!--				FROM (SELECT BID, BTITLE,BCONTENT,BHITS, ID, BDATE FROM MYCGV_BOARD -->
+<!--				          ORDER BY BDATE DESC)-->
+<!--		</select>-->
+<!--		-->
+<!--		<update id="updateHits" parameterType="String">-->
+<!--			update mycgv_board set bhits = bhits+1 where bid=#{bid}-->
+<!--		</update>-->
+<!--		-->
+<!--		<delete id="delete" parameterType="java.lang.String">-->
+<!--			delete from mycgv_board where bid=#{bid}-->
+<!--		</delete>-->
+
+<!--		<update id="update" parameterType="com.mycgv_jsp.vo.BoardVo">-->
+<!--			update mycgv_board set btitle=#{btitle}, bcontent=#{bcontent} -->
+<!--			&lt;!&ndash; if(test='bfile != null'){ &ndash;&gt;-->
+<!--				, bfile=#{bfile}, bsfile=#{bsfile}-->
+<!--			&lt;!&ndash; } &ndash;&gt;-->
+<!--			where bid=#{bid}-->
+<!--		</update>-->
+
+
+
+
+		<insert id="insert" parameterType="com.springboot.mycgv.dto.BoardDto">
+ 			insert into
+	 			mycgv_board(bid,btitle,bcontent,bhits,id,bdate,bfile,bsfile)
+				  values('b_'||LTRIM(to_char(sequ_mycgv_board.nextval,'0000'))
+				  ,#{btitle},#{bcontent},0,#{id},sysdate,#{bfile, jdbcType=VARCHAR},#{bsfile, jdbcType=VARCHAR})
+ 		</insert>
+
+</mapper>

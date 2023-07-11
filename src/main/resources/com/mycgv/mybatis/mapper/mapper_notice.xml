@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.springboot.mycgv.repository.NoticeMapper">
+
+			<select id="content" parameterType="String" resultType="com.springboot.mycgv.dto.NoticeDto">
+				SELECT NID,NTITLE,NCONTENT,NHITS,NDATE
+					FROM MYCGV_NOTICE
+					 WHERE NID=#{nid}
+			</select>
+
+		<select id="list" parameterType="com.springboot.mycgv.dto.PageDto" resultType="com.springboot.mycgv.dto.NoticeDto">
+			SELECT RNO,NID,NTITLE,NHITS,NDATE
+			FROM(SELECT ROWNUM RNO,NID,NTITLE,NHITS,TO_CHAR(NDATE,'YYYY-MM-DD') NDATE
+				 FROM (SELECT NID,NTITLE,NHITS,NDATE FROM MYCGV_NOTICE
+					   ORDER BY NDATE DESC))
+			WHERE RNO BETWEEN #{startCount} AND #{endCount}
+		</select>
+
+<!--		<select id="list2" resultType="com.mycgv_jsp.vo.NoticeVo">-->
+<!--			SELECT ROWNUM RNO,NID,NTITLE,NHITS,TO_CHAR(NDATE,'YYYY-MM-DD') NDATE -->
+<!--				 FROM (SELECT NID,NTITLE,NHITS,NDATE FROM MYCGV_NOTICE -->
+<!--					 ORDER BY NDATE DESC) -->
+<!--		</select>-->
+<!--		-->
+<!--		<update id="updateHits" parameterType="String">-->
+<!--			update mycgv_notice set nhits = nhits+1 where nid=#{nid}-->
+<!--		</update>-->
+<!--		-->
+<!--		<delete id="delete" parameterType="String">-->
+<!--			DELETE FROM MYCGV_NOTICE WHERE NID=#{nid}-->
+<!--		</delete>-->
+<!--		-->
+<!--		<update id="update" parameterType="com.mycgv_jsp.vo.NoticeVo">-->
+<!--			UPDATE MYCGV_NOTICE SET NTITLE=#{ntitle},NCONTENT=#{ncontent} WHERE NID=#{nid}-->
+<!--		</update>-->
+<!--		-->
+<!--		<insert id="insert" parameterType="com.mycgv_jsp.vo.NoticeVo">-->
+<!--			insert into mycgv_notice(nid,ntitle,ncontent,nhits,ndate,nfile1,nsfile1,nfile2,nsfile2)-->
+<!--		 		values('n_'||ltrim(to_char(sequ_mycgv_notice.nextval,'0000')),-->
+<!--		 			#{ntitle},#{ncontent},0,sysdate,#{nfile1},#{nsfile1},#{nfile2},#{nsfile2})-->
+<!--		</insert>-->
+<!--		-->
+
+ 		
+
+
+</mapper>
