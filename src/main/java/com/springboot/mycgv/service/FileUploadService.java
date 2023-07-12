@@ -8,13 +8,23 @@ import java.util.UUID;
 
 @Service
 public class FileUploadService {
+    /*
+       fileDelete
+     */
+    public void fileDelete(String oldBsFile) throws Exception{
+        //파일의 저장위치
+        String projectPath = System.getProperty("user.dir")+"/src/main/resources/static/upload/";
+        File deleteFile = new File(projectPath+oldBsFile);
+        if(deleteFile.exists()) deleteFile.delete();
+    }
+
+
     /**
      *  fileSave 기능  - 파일이 존재하면 서버에 저장하는 메소드
      */
     public void fileSave(BoardDto boardDto) throws Exception{
         //파일의 저장위치
         String projectPath = System.getProperty("user.dir")+"/src/main/resources/static/upload/";
-        System.out.println("path--"+projectPath);
 
         //파일이 존재하면 서버에 저장
         if(boardDto.getFile1().getOriginalFilename() != null && !boardDto.getFile1().getOriginalFilename().equals("")) {
@@ -22,9 +32,6 @@ public class FileUploadService {
             boardDto.getFile1().transferTo(saveFile);
         }
     }
-
-
-
 
     /**
      * fileCheck 기능
@@ -39,7 +46,7 @@ public class FileUploadService {
             boardDto.setBfile(bfile);
             boardDto.setBsfile(bsfile);
         }else {
-            System.out.println("���� ����");
+            System.out.println("파일 없음");
             //boardVo.setBfile("");
             //boardVo.setBsfile("");
         }

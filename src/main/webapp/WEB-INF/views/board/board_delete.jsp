@@ -18,9 +18,9 @@
 	<div class="content">
 		<section class="board">
 			<h1 class="title">게시판</h1>
-			<form name="deleteForm" action="board_delete_proc.do" method="post" enctype="multipart/form-data">
+			<form name="deleteForm" action="/board_delete" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="bid" value="${bid}" >
-				<input type="hidden" name="bsfile" value="${bsfile}" >
+				<input type="hidden" name="page" value="${page}" >
 				<table>
 					<tr>
 						<td><img src="http://localhost:9000/images/trash.jpg"></td>
@@ -31,11 +31,11 @@
 					<tr>
 						<td colspan="2">
 							<button type="submit" class="btn_style">삭제완료</button>
-							<a href="board_content.do?bid=${bid}">
+							<a href="/board_content/${board.bid}/${page}/">
 								<button type="button" class="btn_style">이전페이지</button></a>
-							<a href="board_list.do">
+							<a href="/board_list/${page}/">
 								<button type="button" class="btn_style">리스트</button></a>
-							<a href="http://localhost:9000/index.do">
+							<a href="http://localhost:9000/">
 								<button type="button" class="btn_style">홈으로</button></a>
 						</td>				
 					</tr>

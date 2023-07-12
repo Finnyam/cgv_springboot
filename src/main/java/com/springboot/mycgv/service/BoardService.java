@@ -13,6 +13,17 @@ public class BoardService {
     @Autowired
     private BoardMapper boardMapper;
 
+    public int delete(String bid){
+        return boardMapper.delete(bid);
+    }
+    public String getBsfile(String bid){
+        return boardMapper.getBsfile(bid);
+    }
+
+    public int update(BoardDto boardDto){
+        return boardMapper.update(boardDto);
+    }
+
     public int insert(BoardDto boardDto){
         return boardMapper.insert(boardDto);
     }

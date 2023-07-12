@@ -8,6 +8,9 @@ import java.util.List;
 
 @Mapper
 public interface BoardMapper {
+    int delete(String bid);
+    String getBsfile(String bid);
+    int update(BoardDto boardDto);
     int insert(BoardDto boardDto);
     BoardDto content(String bid);
     List<BoardDto> list(PageDto pageDto);

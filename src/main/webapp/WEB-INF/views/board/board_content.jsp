@@ -43,9 +43,9 @@
 				</tr>
 				<tr>
 					<td colspan="2">
-						<a href="board_update.do?bid=${board.bid }">
+						<a href="/board_update/${board.bid }/${page}/">
 							<button type="button" class="btn_style">수정하기</button></a>
-						<a href="board_delete.do?bid=${board.bid }&bsfile=${board.bsfile}">
+						<a href="/board_delete/${board.bid }/${page}/">
 							<button type="button" class="btn_style">삭제하기</button></a>
 						<a href="/board_list/${page}/">
 							<button type="button" class="btn_style">리스트</button></a>

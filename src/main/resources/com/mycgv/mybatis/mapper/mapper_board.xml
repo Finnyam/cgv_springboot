@@ -28,18 +28,19 @@
 <!--		<update id="updateHits" parameterType="String">-->
 <!--			update mycgv_board set bhits = bhits+1 where bid=#{bid}-->
 <!--		</update>-->
-<!--		-->
-<!--		<delete id="delete" parameterType="java.lang.String">-->
-<!--			delete from mycgv_board where bid=#{bid}-->
-<!--		</delete>-->
+		<select id="getBsfile" parameterType="String" resultType="String">
+			select bsfile from mycgv_board where bid=#{bid}
+		</select>
 
-<!--		<update id="update" parameterType="com.mycgv_jsp.vo.BoardVo">-->
-<!--			update mycgv_board set btitle=#{btitle}, bcontent=#{bcontent} -->
-<!--			&lt;!&ndash; if(test='bfile != null'){ &ndash;&gt;-->
-<!--				, bfile=#{bfile}, bsfile=#{bsfile}-->
-<!--			&lt;!&ndash; } &ndash;&gt;-->
-<!--			where bid=#{bid}-->
-<!--		</update>-->
+		<delete id="delete" parameterType="java.lang.String">
+			delete from mycgv_board where bid=#{bid}
+		</delete>
+
+		<update id="update" parameterType="com.springboot.mycgv.dto.BoardDto">
+			update mycgv_board set btitle=#{btitle}, bcontent=#{bcontent}
+				, bfile=#{bfile}, bsfile=#{bsfile}
+			where bid=#{bid}
+		</update>
 
 
 
