@@ -16,6 +16,12 @@ public class MemberController {
     @Autowired
     MemberService memberService;
 
+    /* mypage*/
+    @GetMapping("mypage")
+    public String mypage(){
+        return "/mypage/mypage";
+    }
+
     /* logout */
     @GetMapping("logout")
     public String logout(HttpSession session,Model model){
