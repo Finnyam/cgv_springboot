@@ -18,8 +18,13 @@ public class MemberController {
 
     /* logout */
     @GetMapping("logout")
-    public String logout(){
-
+    public String logout(HttpSession session,Model model){
+        SessionDto svo = (SessionDto) session.getAttribute("svo");
+        if(svo != null){
+            session.invalidate();
+            model.addAttribute("logout_result","ok");
+        }
+        return "index";
     }
 
     /*join process*/
