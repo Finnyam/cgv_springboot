@@ -38,7 +38,7 @@
 					<li><a href="http://localhost:9000/board_list/1/">게시판</a></li>
 					<li><a href="http://localhost:9000/board_list_json">게시판(JSON)</a></li>
 					<c:if test="${sessionScope.svo.id == 'admin'}">
-					<li><a href="http://localhost:9000/admin_index">ADMIN</a></li>
+					<li><a href="http://localhost:9000/admin/admin_index">ADMIN</a></li>
 					</c:if>
 				</ul>
 				</c:otherwise>
