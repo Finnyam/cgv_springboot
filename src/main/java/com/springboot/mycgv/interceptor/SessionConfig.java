@@ -11,6 +11,6 @@ public class SessionConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry){
         InterceptorRegistration sessionCheckInterceptor
                 = registry.addInterceptor(new SessionAuthInterceptor());
-        sessionCheckInterceptor.addPathPatterns("/mypage**/**");
+        sessionCheckInterceptor.addPathPatterns("/mypage**/**","/admin**/**");
     }
 }
