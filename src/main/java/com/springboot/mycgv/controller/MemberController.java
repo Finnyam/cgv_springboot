@@ -9,10 +9,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class MemberController {
     @Autowired
     MemberService memberService;
+
+    /* logout */
+    @GetMapping("logout")
+    public String logout(){
+
+    }
 
     /*join process*/
     @PostMapping("join")
@@ -31,9 +39,10 @@ public class MemberController {
 
     /* login process*/
     @PostMapping("login")
-    public String login_proc(MemberDto memberDto, Model model){
+    public String login_proc(MemberDto memberDto, Model model, HttpSession session){
         SessionDto sessionDto = memberService.login(memberDto);
         if(sessionDto.getLoginresult() == 1){
+            session.setAttribute("svo",sessionDto);
             model.addAttribute("login_result","ok");
         }
         return "index";
